@@ -37,7 +37,7 @@ class Student extends Person{
     }
 
     listSubjects(){
-        console.log(this.favSubjects.forEach(item => {console.log(item); }));
+        this.favSubjects.forEach(item => {console.log(item); });
     }
     PRAssignment(subject){
         console.log(`${this.name} has submitted a PR for ${subject}`); 
@@ -76,7 +76,7 @@ const brittH = new Instructor({
     catchPhrase:"Let's get coding!"}); 
 
 
-const RyanH = new Instructor({
+const ryanH = new Instructor({
     name:"Ryan H." , 
     location:"USA",
     age:54,
@@ -86,9 +86,6 @@ const RyanH = new Instructor({
     
 }); 
 
-//instructor methods
-console.log();
-
 const umekoW = new Student({
     name:'Umeko w', 
     location:"USA",
@@ -96,7 +93,8 @@ const umekoW = new Student({
     previousBackground:"Beginner courses", 
     className:"Web23", 
     favSubjects:["CS", "Art", "HTML"], 
-}); 
+});
+
 const peterP = new Student({
     name: "Peter Parker", 
     location: "USA specifically NY",
@@ -127,4 +125,42 @@ const gregU = new ProjectManager({
     favInstructor: "BrittH"
 }); 
 
+//log all objects to check properties
+console.log(brittH, ryanH, umekoW, peterP, zacS, gregU);
 
+
+//instructor methods
+//demo
+brittH.demo("JavaScript-II");
+ryanH.demo("React-I"); 
+//grade
+brittH.grade(umekoW, "JavaScript-II");
+ryanH.grade(peterP, "React-I"); 
+
+
+
+//student methods
+
+//listSubjects
+umekoW.listSubjects(); 
+peterP.listSubjects();
+
+//PRAssignment
+umekoW.PRAssignment("JavaScript-IV");
+peterP.PRAssignment("JavaScript-II");
+
+//sprintChallenge
+umekoW.sprintChallenge("JavaScript-Sprint");
+peterP.sprintChallenge("UI-Sprint"); 
+
+
+
+//Project Manager methods
+
+//standUP
+zacS.standUp("web23"); 
+gregU.standUp("web23_help"); 
+
+//debugsCode
+zacS.debugsCode(umekoW, "JavaScript-IV"); 
+gregU.debugsCode(peterP, "UI-II"); 
