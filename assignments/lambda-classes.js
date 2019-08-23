@@ -25,6 +25,15 @@ class Instructor extends Person{
     grade(student, subject){
         console.log(`${student.name} recieves a perfect score on ${subject}.`); 
     }
+
+    gradeAssignment(student){
+        student.grade = student.grade + (Math.floor(Math.random() * 201) - 100);
+        if (student.grade < 0){
+            student.grade = 0; 
+        }else if (student.grade > 100){
+            student.grade = 100; 
+        }
+    }
 }
 
 class Student extends Person{
@@ -33,6 +42,8 @@ class Student extends Person{
         this.previousBackground = attr.previousBackground; 
         this.className = attr.className; 
         this.favSubjects = attr.favSubjects; 
+        this.grade = attr.grade; 
+
        
     }
 
@@ -45,6 +56,20 @@ class Student extends Person{
     sprintChallenge(subject){
         console.log(`${this.name} has begun sprint challenge on ${subject}`); 
     }
+    graduate(instructor) {
+       
+        if (this.grade > 70){
+            console.log(`${this.name} graduated from Lambda School!!! Congrats!!!`); 
+        } else{
+            console.log(`${this.name} grade was not high enough to graduate. ${instructor.name} will grade ${this.name}'s assignments again to increase their score `); 
+
+            instructor.gradeAssignment(this);
+            
+            this.graduate(instructor); 
+
+        }
+    }
+    
 }
 
 class ProjectManager extends Instructor{
@@ -62,6 +87,8 @@ class ProjectManager extends Instructor{
     debugsCode(student, subject){
         console.log(`${this.name} debugs ${student.name}'s code on ${subject}.`); 
     }
+
+   
 }
 
 
@@ -93,6 +120,7 @@ const umekoW = new Student({
     previousBackground:"Beginner courses", 
     className:"Web23", 
     favSubjects:["CS", "Art", "HTML"], 
+    grade: 10,
 });
 
 const peterP = new Student({
@@ -164,3 +192,18 @@ gregU.standUp("web23_help");
 //debugsCode
 zacS.debugsCode(umekoW, "JavaScript-IV"); 
 gregU.debugsCode(peterP, "UI-II"); 
+
+
+//stretch methods
+
+
+umekoW.graduate(zacS); 
+
+/*
+gregU.grade(umekoW); 
+umekoW.graduate(); 
+
+zacS.grade(peterP); 
+peterP.graduate(); 
+
+*/
