@@ -1,4 +1,6 @@
 // CODE here for your Lambda Classes
+
+
 class Person {
     constructor(attr){
         this.name = attr.name;
@@ -37,16 +39,17 @@ class Instructor extends Person{
 }
 
 class Student extends Person{
+    
+
     constructor(attr){
         super(attr); 
         this.previousBackground = attr.previousBackground; 
         this.className = attr.className; 
         this.favSubjects = attr.favSubjects; 
         this.grade = attr.grade; 
-
        
     }
-
+     
     listSubjects(){
         this.favSubjects.forEach(item => {console.log(item); });
     }
@@ -56,16 +59,19 @@ class Student extends Person{
     sprintChallenge(subject){
         console.log(`${this.name} has begun sprint challenge on ${subject}`); 
     }
+   
     graduate(instructor) {
-       
+        
         if (this.grade > 70){
             console.log(`${this.name} graduated from Lambda School!!! Congrats!!!`); 
         } else{
+            
             console.log(`${this.name} grade was not high enough to graduate. ${instructor.name} will grade ${this.name}'s assignments again to increase their score `); 
 
             instructor.gradeAssignment(this);
             
             this.graduate(instructor); 
+            
 
         }
     }
@@ -130,6 +136,7 @@ const peterP = new Student({
     previousBackground:"Graduate Student in physics", 
     className:"Web23", 
     favSubjects:["Physics", "Biology", "English Comp"],
+    grade: 45,
 }); 
 
 const zacS = new ProjectManager({
@@ -195,15 +202,9 @@ gregU.debugsCode(peterP, "UI-II");
 
 
 //stretch methods
-
-
+brittH.grade(umekoW, "UI-II");
 umekoW.graduate(zacS); 
 
-/*
-gregU.grade(umekoW); 
-umekoW.graduate(); 
+peterP.graduate(zacS); 
 
-zacS.grade(peterP); 
-peterP.graduate(); 
-
-*/
+umekoW.graduate(gregU)
